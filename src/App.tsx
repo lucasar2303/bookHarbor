@@ -1,11 +1,14 @@
 import 'tailwindcss/tailwind.css';
-import Menu from './components/Menu.tsx'
+import Menu from './components/Menu.tsx';
+import Home from './components/Home.tsx';
 
 function App() {
   return (
-    <Menu />
+    <div>
+      <Menu />
+      <Home />
+    </div>
   );
 }
 
-
-export default App
+export default App;

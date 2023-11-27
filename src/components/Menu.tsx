@@ -20,7 +20,7 @@ function Menu() {
 
     return (
         <nav>
-            <div className="max-w-6xl mx-auto px-4">
+            <div className="max-w-7xl mx-auto px-4">
                 <div className="flex justify-between">
                     {/* Logo e Título */}
                     <div>
