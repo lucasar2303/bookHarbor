@@ -32,11 +32,11 @@ function BookFilter(){
     }, []);
 
     return(
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start md:flex-row flex-col gap-2">
       {/* Dropdowns */}
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center w-full md:w-auto">
 
-                <div className='relative' ref={dropdownRef1}>
+                <div className='relative flex-1 md:flex-auto' ref={dropdownRef1}>
                     <div id="btnSelect" 
                         className="flex gap-2 py-2 items-center justify-between border text-black-principal border-gray-principal rounded-md px-2 hover:border-black-principal cursor-pointer transition-all"
                         onClick={toggleList}>
@@ -45,7 +45,7 @@ function BookFilter(){
                     </div>
 
                     {isListOpen && (
-                    <ul className="absolute w-full rounded border border-gray-principal mt-2 overflow-scroll overflow-x-hidden max-h-40 scrollbar-select">
+                    <ul className="absolute w-full rounded border bg-white border-gray-principal mt-2 overflow-scroll overflow-x-hidden max-h-40 scrollbar-select">
                         <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick}>Exemplo 1</li>
                         <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick}>Exemplo 2</li>
                         <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick}>Exemplo 3</li>
@@ -54,7 +54,7 @@ function BookFilter(){
                     )}
                 </div>
 
-                <div className='relative' ref={dropdownRef2}>
+                <div className='relative flex-1 md:flex-auto' ref={dropdownRef2}>
                     <div id="btnSelect" 
                         className="flex gap-2 py-2 items-center justify-between border text-black-principal border-gray-principal rounded-md px-2 hover:border-black-principal cursor-pointer transition-all"
                         onClick={toggleList2}>
@@ -63,7 +63,7 @@ function BookFilter(){
                     </div>
 
                     {isListOpen2 && (
-                    <ul className="absolute w-full rounded border border-gray-principal mt-2 overflow-scroll overflow-x-hidden max-h-40 scrollbar-select">
+                    <ul className="absolute w-full rounded border bg-white border-gray-principal mt-2 overflow-scroll overflow-x-hidden max-h-40 scrollbar-select">
                         <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick2}>Exemplo 1</li>
                         <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick2}>Exemplo 2</li>
                         <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick2}>Exemplo 3</li>
@@ -74,20 +74,23 @@ function BookFilter(){
 
             </div>
 
-            
-
       {/* Search input */}
-            <div className="flex gap-2 items-stretch">
+            <div className="flex gap-2 items-stretch w-full md:w-auto">
                 <input
                     type="text"
                     placeholder="Título do livro"
-                    className="border border-gray-300 rounded-md py-1 px-2 bg-white hover:border-gray-400 focus:outline-none focus:border-black-principal"
+                    className="border border-gray-principal w-full md:w-auto rounded-md py-1 px-2 bg-white hover:border-gray-400 focus:outline-none focus:border-black-principal"
                 />
                 <button className="p-2 px-8 bg-blue-principal text-white rounded-md hover:bg-blue-secondary focus:outline-none focus:ring">
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
             </div>
+
+            
+
     </div>
+
+    
     );
 }
 
