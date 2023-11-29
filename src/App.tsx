@@ -1,12 +1,14 @@
 import 'tailwindcss/tailwind.css';
-import Menu from './components/Menu.tsx';
-import Home from './components/Home.tsx';
+import Menu from './components/Pages/Menu.tsx';
+import Home from './components/Pages/Home.tsx';
+import BookFinderZone from './components/Pages/BookFinderZone.tsx';
 
 function App() {
   return (
     <div>
-      <Menu />
-      <Home />
+      <Menu/>
+      <Home/>
+      <BookFinderZone/>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import 'tailwindcss/tailwind.css';
-import React, { useState } from 'react';
-import bghome from '../assets/imgs/bg-home.png';
+import bghome from '../../assets/imgs/bg-home.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 

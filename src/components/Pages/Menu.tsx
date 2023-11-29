@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import React, { useState } from 'react';
-import MenuItem from './MenuItem';
-import logo from '../assets/imgs/logo.png';
+import MenuItem from '../Ui/MenuItem';
+import logo from '../../assets/imgs/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
