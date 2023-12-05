@@ -1,17 +1,45 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const plugin = require('tailwindcss/plugin');
+
+const Myclass = plugin(function({ addUtilities }) {
+  addUtilities({
+    '.perspective-container': {
+      perspective: '1000px',
+    },
+    '.card': {
+      position: 'relative',
+      transformStyle: 'preserve-3d',
+      transition: 'transform 0.8s',
+    },
+    '.do-flip': {
+      transform: 'rotateY(180deg)',
+    },
+    '.front, .back': {
+      backfaceVisibility: 'hidden',
+    },
+    '.rotate-y-180': {
+      transform: 'rotateY(180deg)',
+    },
+    '.backface-hidden': {
+      backfaceVisibility: 'hidden',
+    },
+  });
+});
+
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
-      colors:{
+      colors: {
         'blue-principal': '#0D5A93',
         'blue-secondary': '#237DBE',
         'black-principal': '#363636',
         'black-secondary': '#5B5B5B',
-        'gray-principal': '#C7C7C7'
+        'gray-principal': '#C7C7C7',
+        'red-principal': '#EB4335'
       },
       fontFamily: {
         'archivoB': ['"Archivo Black"', 'sans-serif'],
@@ -19,12 +47,8 @@ export default {
       },
       inset: {
         'nfull': '-100%',
-      }
-      
-
-
+      },
     },
   },
-  plugins: [],
+  plugins: [Myclass],
 }
-
