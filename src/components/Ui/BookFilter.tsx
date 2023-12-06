@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { BiChevronDown } from "react-icons/bi";
 
 
