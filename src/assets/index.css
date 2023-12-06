@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 
+html {
+  scroll-behavior: smooth;
+}
+
 .scrollbar-select::-webkit-scrollbar {
     width: 5px; /* Largura da barra de rolagem */
   }
@@ -15,4 +19,5 @@
   .scrollbar-select::-webkit-scrollbar-track {
     background: #c7c7c7; /* Cor do trilho da barra de rolagem */
   }
+  
   

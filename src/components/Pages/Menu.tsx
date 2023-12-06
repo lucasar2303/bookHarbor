@@ -32,9 +32,10 @@ function Menu() {
 
                     {/* Menu para Tela Grande */}
                     <div className="hidden md:flex items-center space-x-1 font-archivo text-black-principal">
-                        <MenuItem href="#">Serviços</MenuItem>
-                        <MenuItem href="#">Sobre Nós</MenuItem>
-                        <MenuItem href="#">Contato</MenuItem>
+                        <MenuItem href="#functionSection">Buscar livros</MenuItem>
+                        <MenuItem href="#aboutSection">Sobre Nós</MenuItem>
+                        <MenuItem href="#functionSection">Funcionalidades</MenuItem>
+                        <MenuItem href="#contactSection">Contato</MenuItem>
                     </div>
 
                     {/* Botão do Menu para Tela Pequena */}
