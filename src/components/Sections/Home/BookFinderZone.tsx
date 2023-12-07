@@ -1,14 +1,14 @@
 import 'tailwindcss/tailwind.css';
-import BookFilter from '../Ui/BookFilter.tsx';
-import BookCard from '../Ui/BookCard.tsx';
+import BookFilter from '../../Ui/Book/BookFilter.tsx';
+import BookCard from '../../Ui/Book/BookCard.tsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import BookPagination from '../Ui/BookPagination.tsx';
+import BookPagination from '../../Ui/Book/BookPagination.tsx';
 
 function BookFinderZone(){
 
     return(
-        <div className="max-w-7xl m-auto px-4 mt-20 md:mt-0">
+        <div className="max-w-7xl m-auto px-4 mt-20 md:mt-0" id='bookFinderZone'>
             <BookFilter />
             <hr className="my-4 md:my-8 border-t border-gray-principal" />
 

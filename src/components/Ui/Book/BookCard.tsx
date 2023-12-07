@@ -2,7 +2,7 @@ import 'tailwindcss/tailwind.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faList, faCheck, faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import imgBook from '../../assets/imgs/imgBookExample.png';
+import imgBook from '../../../assets/imgs/imgBookExample.png';
 
 function BookCard(){
 
