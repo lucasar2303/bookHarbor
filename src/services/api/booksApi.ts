@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'API_KEY'; // Substitua com sua chave de API
+const API_KEY = import.meta.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
 
 // Função para buscar livros
