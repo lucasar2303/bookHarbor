@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+console.log("APIKEY = "+import.meta.env.VITE_REACT_APP_GOOGLE_BOOKS_API_KEY)
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_BOOKS_API_KEY;
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
 
