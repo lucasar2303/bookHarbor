@@ -1,15 +1,11 @@
 import 'tailwindcss/tailwind.css';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import BookFilter from '../../Ui/Book/BookFilter.tsx';
 import BookCard from '../../Ui/Book/BookCard.tsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import BookPagination from '../../Ui/Book/BookPagination.tsx';
 import { searchBooks } from '../../../services/api/booksApi.ts';
 import { Book } from '../../../types/book.ts';
 import imgBook from '../../../assets/imgs/imgBookExample.png';
-
-const imgBookCorrect:string = "";
 
 const BookFinderZone: React.FC = () => {
     const [books, setBooks] = useState<Book[]>([]);
