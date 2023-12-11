@@ -30,7 +30,7 @@ function BtnScrollToTop(){
     };
 
     return(
-        <div id='btnUp' onClick={scrollToTop} className={`p-4 bg-blue-principal fixed right-6 z-50  shadow-lg flex justify-center items-center rounded-lg hover:bg-blue-secondary cursor-pointer duration-300 transition-all  ${showButton ? 'bottom-6' : '-bottom-16'}`}>
+        <div id='btnUp' onClick={scrollToTop} className={`p-4 bg-blue-principal fixed right-6 z-10  shadow-lg flex justify-center items-center rounded-lg hover:bg-blue-secondary cursor-pointer duration-300 transition-all  ${showButton ? 'bottom-6' : '-bottom-16'}`}>
         <FontAwesomeIcon icon={faChevronUp} size='xl' className='text-white'/>
       </div>
     );

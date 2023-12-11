@@ -1,25 +1,36 @@
 import 'tailwindcss/tailwind.css';
-import Menu from './components/Sections/Menu.tsx';
-import Home from './components/Sections/Home/Home.tsx';
-import BookFinderZone from './components/Sections/Home/BookFinderZone.tsx';
-import AboutSection from './components/Sections/Home/AboutSection.tsx';
-import Functionalities from './components/Sections/Home/Functionalities.tsx';
-import Footer from './components/Sections/Footer.tsx';
-import BtnScrollToTop from './components/Ui/BtnScrollToTop.tsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Menu from './components/Sections/Menu';
+import Home from './components/Pages/Home';
+import Footer from './components/Sections/Footer';
+import BtnScrollToTop from './components/Ui/BtnScrollToTop';
+import AuthPage from './components/Pages/AuthPage';
 
 function App() {
+  
   return (
-    <div>
+    <Router>
+      <div>
 
-      <Menu/>
-      <Home/>
-      <BookFinderZone/>
-      <AboutSection/>
-      <Functionalities/>
-      <Footer/>
-      <BtnScrollToTop/>
+        <Routes>
 
-    </div>
+          {/* Rota para a página inicial */}
+          <Route path="/" element={
+            <>
+              <Menu/>
+              <Home />
+              <Footer/>
+            </>
+          } />
+
+          {/* Rota para a página de autenticação */}
+          <Route path="/auth" element={<AuthPage />} />
+
+        </Routes>
+
+        <BtnScrollToTop />
+      </div>
+    </Router>
   );
 }
 

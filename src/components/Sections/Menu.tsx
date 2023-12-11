@@ -1,10 +1,11 @@
 import 'tailwindcss/tailwind.css';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import MenuItem from '../Ui/MenuItem';
 import logo from '../../assets/imgs/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 
 
@@ -34,7 +35,7 @@ function Menu() {
                     <div className="hidden md:flex items-center space-x-4 font-archivo text-black-principal">
                         <MenuItem href="#aboutSection">Sobre</MenuItem>
                         <MenuItem href="#contactSection">Contato</MenuItem>
-                        <MenuItem href="#">Entrar</MenuItem>
+                        <Link to="/auth" className='py-4 px-2  hover:text-blue-principal border-b-2 border-transparent hover:border-blue-principal transition duration-300'>Entrar</Link>
                     </div>
 
                     {/* Botão do Menu para Tela Pequena */}
@@ -50,7 +51,7 @@ function Menu() {
 
                             <MenuItem href="#aboutSection" onClick={toggleMenu}>Sobre</MenuItem>
                             <MenuItem href="#contactSection"  onClick={toggleMenu}>Contato</MenuItem>
-                            <MenuItem href="#"  onClick={toggleMenu}>Entrar</MenuItem>
+                            <Link to="/auth" className='py-4 px-2  hover:text-blue-principal border-b-2 border-transparent hover:border-blue-principal transition duration-300'>Entrar</Link>
 
                         </div>
 

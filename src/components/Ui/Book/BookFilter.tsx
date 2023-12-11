@@ -4,8 +4,11 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef, useEffect } from 'react';
 import { BiChevronDown } from "react-icons/bi";
 
+interface BookFilterProps {
+    onSearch: (searchTerm: string) => void;
+  }
 
-function BookFilter(){
+const BookFilter: React.FC<BookFilterProps> = ({ onSearch }) => {
     const [isListOpen, setIsListOpen] = useState(false);
     const toggleList = () => { setIsListOpen(!isListOpen); };
     const handleItemClick = () => { setIsListOpen(false); };
@@ -27,12 +30,22 @@ function BookFilter(){
     };
 
     useEffect(() => {
+        onSearch("FrontEnd")
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
+        
     }, []);
 
+    // Search
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = () => {
+        onSearch(searchTerm);
+    };
+
+  
     return(
-        <div className="flex justify-between items-start md:flex-row flex-col gap-2">
+        <div className="flex justify-between items-start md:flex-row flex-col gap-2 font-archivo">
       {/* Dropdowns */}
             <div className="flex gap-2 items-center w-full md:w-auto">
 
@@ -80,8 +93,10 @@ function BookFilter(){
                     type="text"
                     placeholder="Título do livro"
                     className="border border-gray-principal w-full md:w-auto rounded-md py-1 px-2 bg-white hover:border-gray-400 focus:outline-none focus:border-black-principal"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <button className="p-2 px-8 bg-blue-principal text-white rounded-md hover:bg-blue-secondary focus:outline-none focus:ring">
+                <button className="p-2 px-8 bg-blue-principal text-white rounded-md hover:bg-blue-secondary focus:outline-none focus:ring" onClick={handleSearch}>
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
             </div>
