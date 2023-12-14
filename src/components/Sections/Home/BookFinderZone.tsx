@@ -6,32 +6,37 @@ import BookPagination from '../../Ui/Book/BookPagination.tsx';
 import { searchBooks } from '../../../services/api/booksApi.ts';
 import { Book } from '../../../types/book.ts';
 import imgBook from '../../../assets/imgs/imgBookExample.png';
+import notFound from '../../../assets/imgs/not-found.svg';
 
 const BookFinderZone: React.FC = () => {
     const [books, setBooks] = useState<Book[]>([]);
+    const [totalResults, setTotalResults] = useState<number>(0);
   
-    const handleSearch = (searchTerm: string) => {
-      searchBooks(searchTerm)
+    const handleSearch = (searchTerm: string, sortOrder: string, typeOption: string) => {
+      searchBooks(searchTerm, sortOrder, typeOption)
         .then(data => {
           setBooks(data.items || []);
+          setTotalResults(data.totalItems);
         })
         .catch(error => {
           console.error("Erro na busca:", error);
+          setBooks([]);
+          setTotalResults(0);
           // Lidar com o erro conforme necessário
         });
     };
     return(
-        <div className="max-w-7xl m-auto px-4 mt-20 md:mt-0" id='bookFinderZone'>
-            <BookFilter onSearch={handleSearch} />
-            <hr className="my-4 md:my-8 border-t border-gray-principal" />
-
+        <div className="max-w-7xl m-auto px-4 mt-20 md:mt-0 lg:mt-10" id='bookFinderZone'>
+            <BookFilter onSearch={handleSearch} totalResults={totalResults}/>
+            
+            
             {/* Outros elementos do componente */}
-
+            {totalResults > 0 ? (
             <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center w-full mb-16'>
-                {books.map(book => (
+                {books.map((book, index) => (
 
                     <BookCard 
-                        key={book.id}
+                        key={`${book.id}-${index}`}
                         title={book.volumeInfo.title}
                         subtitle={book.volumeInfo.subtitle}
                         authors={book.volumeInfo.authors}
@@ -42,6 +47,13 @@ const BookFinderZone: React.FC = () => {
                     />
                 ))}
             </div>
+            ) : (
+            <div className="w-full flex items-center flex-col my-24 md:my-48 gap-6">
+                <img src={notFound} alt="" className='w-full max-w-xs md:max-w-md '/>
+                <h2 className="text-gray-principal font-archivoB text-7xl">Oops!</h2>
+                <p className="font-archivo text-gray-principal text-xl max-w-sm text-center" >Infelizmente não conseguimos encontrar o livro que você procura :(</p>
+            </div>
+            )}
 
 
             <BookPagination />

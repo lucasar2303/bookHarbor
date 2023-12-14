@@ -1,21 +1,83 @@
 import 'tailwindcss/tailwind.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef, useEffect } from 'react';
 import { BiChevronDown } from "react-icons/bi";
 
 interface BookFilterProps {
-    onSearch: (searchTerm: string) => void;
+    onSearch: (searchTerm: string, sortOrder: string, typeOption:string) => void;
+    totalResults: number;
+    
   }
+  
+const BookFilter: React.FC<BookFilterProps> = ({ onSearch, totalResults  }) => {
+    const [sortOrder, setSortOrder] = useState('relevance');
+    const [typeOption, setTypeOption] = useState('all');
+    const [searchTerm, setSearchTerm] = useState('Clean code');
 
-const BookFilter: React.FC<BookFilterProps> = ({ onSearch }) => {
+    // Switch placeholder Select Order
+
+    type OrderType = 'relevance' | 'newest' | 'standard';
+    const orderLabels: Record<OrderType, string> = {
+        'relevance': 'Relevância',
+        'newest': 'Mais Recente',
+        'standard': 'Ordenar por' 
+    };
+    const [orderSelect, setOrderSelect] = useState(orderLabels['standard'])
+
+    // Switch placeholder Select Type
+
+    type TypeType = 'all' | 'books' | 'magazines' | 'standard';
+    const typeLabels: Record<TypeType, string> = {
+        'standard': 'Tipo',
+        'all': 'Todos',
+        'books': 'Livros',
+        'magazines': 'Revistas'
+    };
+    const [typeSelect, setTypeSelect] = useState(typeLabels['standard'])
+
+    // Reset Filter
+
+    const resetFilter = () => {
+        const defaultSortOrder = 'relevance';
+        const defaultTypeOption = 'all';
+        const defaultSearchTerm = 'Clean Code';
+        
+
+        setSearchTerm(defaultSearchTerm);
+        setSortOrder(defaultSortOrder);
+        setTypeOption(defaultTypeOption);
+        setOrderSelect(orderLabels['standard']);
+        setTypeSelect(typeLabels['standard']);
+
+        onSearch(defaultSearchTerm, defaultSortOrder, defaultTypeOption);
+        setSearchTerm('');
+
+
+        
+    };
+
+    // Button Order
+    
     const [isListOpen, setIsListOpen] = useState(false);
     const toggleList = () => { setIsListOpen(!isListOpen); };
-    const handleItemClick = () => { setIsListOpen(false); };
+    const handleItemClick = (order: string) => {
+        setOrderSelect(orderLabels[order as OrderType]);        
+        setSortOrder(order);
+        setIsListOpen(false);
+    };
 
+    // Button Select Type
+    
     const [isListOpen2, setIsListOpen2] = useState(false);
     const toggleList2 = () => { setIsListOpen2(!isListOpen2); };
-    const handleItemClick2 = () => { setIsListOpen2(false); };
+    const handleItemClick2 = (type: string) => {
+        setTypeSelect(typeLabels[type as TypeType]);  
+        setTypeOption(type);
+        setIsListOpen2(false);
+    };
+
+    // Dropdown Select's
 
     const dropdownRef1 = useRef<HTMLDivElement>(null);
     const dropdownRef2 = useRef<HTMLDivElement>(null);
@@ -30,21 +92,27 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch }) => {
     };
 
     useEffect(() => {
-        onSearch("FrontEnd")
+        setSearchTerm('')
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
         
     }, []);
 
+    // Search when toggle Order and Type
+
+    useEffect(() => {
+        handleSearch()
+        
+    }, [sortOrder, typeOption]);
+
     // Search
-    const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = () => {
-        onSearch(searchTerm);
+        onSearch(searchTerm, sortOrder, typeOption);
     };
-
-  
+     
     return(
+        <div>
         <div className="flex justify-between items-start md:flex-row flex-col gap-2 font-archivo">
       {/* Dropdowns */}
             <div className="flex gap-2 items-center w-full md:w-auto">
@@ -53,17 +121,19 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch }) => {
                     <div id="btnSelect" 
                         className="flex gap-2 py-2 items-center justify-between border text-black-principal border-gray-principal rounded-md px-2 hover:border-black-principal cursor-pointer transition-all"
                         onClick={toggleList}>
-                    Ordernar por
+                    {orderSelect}
                     <BiChevronDown size={25}/>
                     </div>
 
                     {isListOpen && (
-                    <ul className="absolute w-full rounded border bg-white border-gray-principal mt-2 overflow-scroll overflow-x-hidden max-h-40 scrollbar-select">
-                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick}>Exemplo 1</li>
-                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick}>Exemplo 2</li>
-                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick}>Exemplo 3</li>
+                    <ul className="absolute w-full rounded border bg-white border-gray-principal mt-2 overflow-scroll overflow-x-hidden max-h-40 scrollbar-select z-30">
+                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer"
+                            onClick={() => handleItemClick("relevance")}>Relevância</li>
+                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer"
+                            onClick={() => handleItemClick("newest")}>Mais recente</li>
                         {/* Outros itens... */}
                     </ul>
+                
                     )}
                 </div>
 
@@ -71,15 +141,15 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch }) => {
                     <div id="btnSelect" 
                         className="flex gap-2 py-2 items-center justify-between border text-black-principal border-gray-principal rounded-md px-2 hover:border-black-principal cursor-pointer transition-all"
                         onClick={toggleList2}>
-                    Categoria
+                    {typeSelect}
                     <BiChevronDown size={25}/>
                     </div>
 
                     {isListOpen2 && (
-                    <ul className="absolute w-full rounded border bg-white border-gray-principal mt-2 overflow-scroll overflow-x-hidden max-h-40 scrollbar-select">
-                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick2}>Exemplo 1</li>
-                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick2}>Exemplo 2</li>
-                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={handleItemClick2}>Exemplo 3</li>
+                    <ul className="absolute w-full rounded border bg-white border-gray-principal mt-2 overflow-scroll overflow-x-hidden max-h-40 scrollbar-select z-30">
+                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={() => handleItemClick2("all")}>Todos</li>
+                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={() => handleItemClick2("books")}>Livros</li>
+                        <li className="py-1 px-2 text-black-secondary hover:bg-blue-principal hover:text-white cursor-pointer" onClick={() => handleItemClick2("magazines")}>Revistas</li>
                         {/* Outros itens... */}
                     </ul>
                     )}
@@ -103,6 +173,12 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch }) => {
 
             
 
+    </div>
+    <hr className="my-4 md:my-8 border-t border-gray-principal" />
+    <div className="flex justify-between w-full items-center mb-10">
+        <button onClick={resetFilter} className="flex gap-2 items-center rounded shadow-white hover:-translate-y-1 transition-all duration-300 text-sm flex-row-reverse md:flex-row md:text-base active:scale-50"><span className='text-black-secondary'>Limpar filtros</span> <FontAwesomeIcon icon={faXmark} className='text-blue-secondary text-xl' /></button>
+        <span className='text-black-secondary text-right text-sm md:text-base flex-1 '>{totalResults > 0 ? `${totalResults} Livros encontrados` : 'Nenhum livro encontrado'} </span>
+    </div>
     </div>
 
     
