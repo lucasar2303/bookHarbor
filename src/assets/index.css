@@ -19,5 +19,40 @@ html {
   .scrollbar-select::-webkit-scrollbar-track {
     background: #c7c7c7; /* Cor do trilho da barra de rolagem */
   }
+
+  .boat {
+    animation: moveBoat2 1.5s ease-in infinite ;
+  }
+
+  .water-wrap {
+    display: flex;
+    animation: moveWater 1.5s linear infinite;
+  }
   
+  @keyframes moveWater {
+    0% { 
+      transform: translateX(-100%);  
+    }
+    100% { 
+      transform: translateX(0);  
+    }
+  }
+  @keyframes moveBoat {
+    0%, 100% { 
+      transform: translateY(2%)
+    }
+    50% { 
+      transform: translateY(-3%)
+    } 
+  }
+  @keyframes moveBoat2 {
+    0%, 100% { 
+      transform: rotate(2deg)
+    }
+    50% { 
+      transform: rotate(-2deg)
+    } 
+  }
+
+
   

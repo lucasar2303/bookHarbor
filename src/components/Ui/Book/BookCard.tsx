@@ -73,12 +73,12 @@ const BookCard: React.FC<BookCardProps> = ({ title, subtitle, authors, published
             <div className={`card h-full w-full duration-1000 ${isFlipped ? 'do-flip' : ''}`}>
                 <div className="front absolute w-full h-full shadow-2xl border p-5 border-gray-100 rounded-xl backface-hidden">
                     <img src={thumbnail} alt="Image Book" className="w-full mb-5 h-auto max-h-64 object-contain" />
-                    <h2 className='text-black-secondary font-bold font-archivo text-lg text-center'>{titleWord}</h2>
+                    <h2 className='text-black-secondary font-bold font-archivo text-lg text-center' >{titleWord}</h2>
                 </div>
                 <div className="back absolute w-full h-full shadow-2xl border p-5 flex flex-col justify-between border-gray-100 rounded-xl backface-hidden rotate-y-180">
                     <div className=''>
-                        <h3 className="font-bold font-archivo text-xl border-b-2 text-black-principal border-black-secondary pb-3 mb-3" id='nameBook'>{titleWord}</h3>
-                        <p className="font-archivo text-md text-black-secondary mb-2" id='subtitleBook'>{subtitleWord}</p>
+                        <h3 className="font-bold font-archivo text-xl border-b-2 text-black-principal border-black-secondary pb-3 mb-3" id='nameBook' title={title}>{titleWord}</h3>
+                        <p className="font-archivo text-md text-black-secondary mb-2" id='subtitleBook'  title={subtitle}>{subtitleWord}</p>
                         <p className="font-archivo text-sm text-black-secondary" id='authorBook'><strong>{authors && authors.length >= 2 ? "Autores: " : "Autor: "}</strong> {authorsWord}</p>
                         <p className="font-archivo text-sm text-black-secondary" id='publishedDateBook'><strong>Publicado: </strong> {dateWord}</p>
                         <p className="font-archivo text-sm text-black-secondary" id='pageCountBook'><strong>Número de páginas: </strong> {pageCountWord}</p>

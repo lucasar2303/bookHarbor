@@ -6,11 +6,11 @@ import { BiChevronDown } from "react-icons/bi";
 
 interface BookFilterProps {
     onSearch: (searchTerm: string, sortOrder: string, typeOption:string) => void;
-    totalResults: number;
+    
     
   }
   
-const BookFilter: React.FC<BookFilterProps> = ({ onSearch, totalResults  }) => {
+const BookFilter: React.FC<BookFilterProps> = ({ onSearch  }) => {
     const [sortOrder, setSortOrder] = useState('relevance');
     const [typeOption, setTypeOption] = useState('all');
     const [searchTerm, setSearchTerm] = useState('Clean code');
@@ -108,7 +108,11 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch, totalResults  }) => {
     // Search
 
     const handleSearch = () => {
+        if(searchTerm==""){
+            onSearch('Clean Code', sortOrder, typeOption);
+        }else{
         onSearch(searchTerm, sortOrder, typeOption);
+        }
     };
      
     return(
@@ -175,9 +179,8 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch, totalResults  }) => {
 
     </div>
     <hr className="my-4 md:my-8 border-t border-gray-principal" />
-    <div className="flex justify-between w-full items-center mb-10">
+    <div className="flex justify-end w-full items-center mb-10">
         <button onClick={resetFilter} className="flex gap-2 items-center rounded shadow-white hover:-translate-y-1 transition-all duration-300 text-sm flex-row-reverse md:flex-row md:text-base active:scale-50"><span className='text-black-secondary'>Limpar filtros</span> <FontAwesomeIcon icon={faXmark} className='text-blue-secondary text-xl' /></button>
-        <span className='text-black-secondary text-right text-sm md:text-base flex-1 '>{totalResults > 0 ? `${totalResults} Livros encontrados` : 'Nenhum livro encontrado'} </span>
     </div>
     </div>
 
