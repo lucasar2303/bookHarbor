@@ -36,10 +36,13 @@ module.exports = {
       colors: {
         'blue-principal': '#0D5A93',
         'blue-secondary': '#237DBE',
+        'blue-third': '#5492BE',
         'black-principal': '#363636',
         'black-secondary': '#5B5B5B',
         'gray-principal': '#C7C7C7',
-        'red-principal': '#EB4335'
+        'gray-secondary': '#C2C2C2',
+        'red-principal': '#EB4335',
+        'red-google': '#EA4335'
       },
       fontFamily: {
         'archivoB': ['"Archivo Black"', 'sans-serif'],
