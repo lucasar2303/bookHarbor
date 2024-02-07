@@ -61,8 +61,7 @@ input:focus{
 .auth-section{
   background-image: url(../assets/imgs/bg-auth.png);
   background-repeat: no-repeat;
-  background-size: 110%;
-  background-position: center center;
+  background-size: cover;
 }
 
 @keyframes fadeIn {

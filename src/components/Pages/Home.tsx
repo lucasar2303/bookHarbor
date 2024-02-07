@@ -13,7 +13,7 @@ function Home(){
         <div>
             <div className='flex justify-center w-full h-screen max-w-7xl m-auto flex-col md:flex-row mt-10 px-4 text-center md:text-left pt-20'>
                 
-                    <div className='mt-10 md:mt-0 md:pr-2 lg:mt-20 lg:pr-10'>
+                    <div className='mt-0 md:mt-10 md:pr-2 lg:mt-20 lg:pr-10'>
                         <h1 className='text-black-principal text-4xl md:text-7xl mb-10'>Navegue por uma maré de livros</h1>
                         <a href='#bookFinderZone'><button className="relative flex w-full md:w-11/12 lg:w-10/12 py-2 px-4 mb-5 rounded text-xl items-center justify-between overflow-hidden bg-blue-principal
                         text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:-translate-x-10 before:bg-blue-secondary
