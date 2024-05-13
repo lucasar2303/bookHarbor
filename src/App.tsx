@@ -1,10 +1,10 @@
 import 'tailwindcss/tailwind.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Menu from './components/Sections/Menu';
-import Home from './components/Pages/Home';
-import Footer from './components/Sections/Footer';
+import Menu from './components/Sections/Application/Menu';
+import Home from './pages/Home';
+import Footer from './components/Sections/Application/Footer';
 import BtnScrollToTop from './components/Ui/BtnScrollToTop';
-import AuthPage from './components/Pages/AuthPage';
+import AuthPage from './pages/AuthPage';
 
 function App() {
   

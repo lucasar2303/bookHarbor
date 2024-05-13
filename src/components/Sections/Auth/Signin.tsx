@@ -86,6 +86,10 @@ const Signin: React.FC<AuthPageProps> = ({ setAuthPage }) => {
         }
     };
 
+    const handleSwitchToForgotPassword = () => {
+        setAuthPage('fp');
+    };
+
 
     return(
     <div className="w-full h-full flex items-center mt-2 md:mt-0 fade-in">
@@ -107,7 +111,7 @@ const Signin: React.FC<AuthPageProps> = ({ setAuthPage }) => {
 
             <div className="mt-2 flex justify-between text-black-secondary">
             <div className='flex items-center'><input type="checkbox" /><span className='ml-2 text-black-secondary'>Lembrar-me</span></div>
-            <a href='' className='hover:text-blue-secondary text-black-secondary'>Esqueceu a senha?</a>
+            <button className='hover:text-blue-secondary text-black-secondary' onClick={handleSwitchToForgotPassword}>Esqueceu a senha?</button>
             </div>
 
             {error && <p className=" text-md mt-4 text-center text-red-500 center bg-red-100 rounded">{errorMsg}</p>}

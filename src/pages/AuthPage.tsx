@@ -1,8 +1,9 @@
 import 'tailwindcss/tailwind.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import Signin from '../Sections/Auth/Signin';
-import Signup from '../Sections/Auth/Signup';
+import Signin from '../components/Sections/Auth/Signin';
+import Signup from '../components/Sections/Auth/Signup';
+import ForgotPassword from '../components/Sections/Auth/ForgotPassword';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -19,7 +20,9 @@ function AuthPage(){
 
             </div>
             <div className="flex-1 bg-white max-w-3xl">
-                {authPage === 'in' ? <Signin  setAuthPage={setAuthPage} /> : <Signup  setAuthPage={setAuthPage} />}
+            {authPage === 'in' ? <Signin setAuthPage={setAuthPage} /> : 
+             authPage === 'fp' ? <ForgotPassword setAuthPage={setAuthPage} /> : 
+             <Signup setAuthPage={setAuthPage} />}
             </div>
             
         </div>

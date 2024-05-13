@@ -1,10 +1,10 @@
 import 'tailwindcss/tailwind.css';
-import bghome from '../../assets/imgs/bg-home.png';
+import bghome from '../assets/imgs/bg-home.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
-import BookFinderZone from '../Sections/Home/BookFinderZone';
-import AboutSection from '../Sections/Home/AboutSection';
-import Functionalities from '../Sections/Home/Functionalities';
+import BookFinderZone from '../components/Sections/Home/BookFinderZone';
+import AboutSection from '../components/Sections/Home/AboutSection';
+import Functionalities from '../components/Sections/Home/Functionalities';
 
 
 function Home(){
