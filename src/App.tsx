@@ -5,10 +5,12 @@ import Home from './pages/Home';
 import Footer from './components/Sections/Application/Footer';
 import BtnScrollToTop from './components/Ui/BtnScrollToTop';
 import AuthPage from './pages/AuthPage';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   
   return (
+    <UserProvider>
     <Router>
       <div>
 
@@ -31,6 +33,7 @@ function App() {
         <BtnScrollToTop />
       </div>
     </Router>
+    </UserProvider>
   );
 }
 

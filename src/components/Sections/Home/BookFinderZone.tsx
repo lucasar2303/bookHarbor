@@ -1,18 +1,27 @@
 import 'tailwindcss/tailwind.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BookFilter from '../../Ui/Book/BookFilter.tsx';
 import BookCard from '../../Ui/Book/BookCard.tsx';
 import { searchBooks } from '../../../services/api/booksApi.ts';
 import { Book } from '../../../types/book.ts';
-import imgBook from '../../../assets/imgs/imgBookExample.png';
 import notFound from '../../../assets/imgs/not-found.svg';
 import imgLoading from '../../../assets/imgs/loading.svg';
+import { getAuth } from 'firebase/auth';
 
 const BookFinderZone: React.FC = () => {
     const [books, setBooks] = useState<Book[]>([]);
     const [totalResults, setTotalResults] = useState<number>(1);
     const [loadingOn, setLoadingOn] = useState<boolean>(false)
+    const [logged, setLogged] = useState<boolean>(false)
+    const auth = getAuth()
+    
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            setLogged(!!user);
+        });
 
+        return unsubscribe;
+    }, []);
   
     const handleSearch = (searchTerm: string, sortOrder: string, typeOption: string) => {
         setLoadingOn(true)
@@ -60,12 +69,14 @@ const BookFinderZone: React.FC = () => {
         
                             <BookCard 
                                 key={`${book.id}-${index}`}
+                                bookId={book.id}
                                 title={book.volumeInfo.title}
                                 subtitle={book.volumeInfo.subtitle}
                                 authors={book.volumeInfo.authors}
                                 publishedDate={book.volumeInfo.publishedDate}
                                 pageCount={book.volumeInfo.pageCount}
-                                thumbnail={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : imgBook}
+                                thumbnail={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ''}
+                                link={book.volumeInfo.previewLink || book.volumeInfo.infoLink || ""}
                             />
                         ))}
                     </div>

@@ -6,6 +6,7 @@ import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword  } 
 import { auth } from '../../../services/api/firebaseConfig';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { doc, getFirestore, setDoc } from 'firebase/firestore';
 
 interface AuthPageProps {
     setAuthPage: (page: string) => void;
@@ -46,9 +47,27 @@ const Signup: React.FC<AuthPageProps> = ({ setAuthPage }) => {
         setError(false);
         setErrorMsg("");
     
+        if (!email || !password) {
+            setError(true);
+            setErrorMsg("Email e senha são obrigatórios.");
+            return;
+        }
+    
         createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            console.log('Usuário registrado com sucesso' + userCredential.user.displayName);
+          .then(async (userCredential) => {
+            console.log('Usuário registrado com sucesso: ' + userCredential.user.uid);
+    
+            // Criar listas padrão
+            const lists = ['Favoritos', 'Concluídos', 'Quero Ler'];
+            const db = getFirestore();
+            lists.forEach(listName => {
+                const listRef = doc(db, `users/${userCredential.user.uid}/lists`, listName);
+                setDoc(listRef, {
+                    name: listName,
+                    createdAt: new Date()
+                });
+            });
+    
             setAccountCreated(true)
             setTimeout(() => {
                 navigate('/');

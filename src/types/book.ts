@@ -11,6 +11,8 @@ export interface Book {
       imageLinks:{
         thumbnail: string;
         }
+      previewLink: string;
+      infoLink: string;
         
 
     };
