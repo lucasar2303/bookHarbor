@@ -6,12 +6,15 @@ import Footer from './components/Sections/Application/Footer';
 import BtnScrollToTop from './components/Ui/BtnScrollToTop';
 import AuthPage from './pages/AuthPage';
 import { UserProvider } from './context/UserContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   
   return (
     <UserProvider>
     <Router>
+    <ToastContainer />
       <div>
 
         <Routes>

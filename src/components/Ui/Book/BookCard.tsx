@@ -1,11 +1,13 @@
 import 'tailwindcss/tailwind.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpRightFromSquare, faTrash, faList, faCheck, faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUpRightFromSquare, faTrash, faCheck, faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { useUser } from '../../../context/UserContext';  
 import ToolTipButton from './ToolTipButton';
 import { doc, getFirestore, setDoc } from 'firebase/firestore';
 import imgBook from '../../../assets/imgs/imgBookExample.png';
+import { Flip, toast } from 'react-toastify';
+
 
 const noWord = "Não rotulado"
 
@@ -88,8 +90,30 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
                 addedAt: new Date()
             });
             console.log('Livro adicionado com sucesso!');
+            toast.success(`Adicionado na lista ${listName}`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Flip,
+                });
         } catch (error) {
             console.error('Erro ao adicionar livro:', error);
+            toast.error('Algo deu errado :(', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Flip,
+                });
         }
     };
     
@@ -142,12 +166,12 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
                         {pageCount>0 && (<p className="font-archivo text-sm text-black-secondary" id='pageCountBook'><strong>Número de páginas: </strong> {pageCountWord}</p>)}
                     </div>
                     <div className="">
+                    
                     {logged && (
                         <div className="flex justify-between mb-2 gap-2">
-                            <ToolTipButton dataTip="Listas" icon={faList} />
-                            <ToolTipButton dataTip="Favoritar" icon={faStar} onClick={addToFavorites} />
                             <ToolTipButton dataTip="Concluído" icon={faCheck} onClick={addToCompleted} />
                             <ToolTipButton dataTip="Quero ler" icon={faPlus} onClick={addToToRead} />
+                            <ToolTipButton dataTip="Favoritar" icon={faStar} onClick={addToFavorites} />
                         </div>
                     )}
                         <div className="flex justify-between gap-2">

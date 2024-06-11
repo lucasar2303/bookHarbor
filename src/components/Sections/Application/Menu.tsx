@@ -20,7 +20,6 @@ function Menu() {
         ['Favoritos', '/list/favorites'],
         ['Quero Ler', '/list/want-read'],
         ['Concluído', '/list/concluded'],
-        ['Todas', '/list']
     ]);
 
     const logoutItem = new Map<string, string>([
