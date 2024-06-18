@@ -10,8 +10,11 @@ interface ToolTipButtonProps {
 }
 
 const ToolTipButton: React.FC<ToolTipButtonProps> = ({ dataTip, icon, text, onClick  }) => {
+    
+    const tooltipBackgroundClass = dataTip === "Remover" ? "bg-red-principal" : "bg-white";
+    const tooltipColorIcon = dataTip === "Remover" ? "text-white" : "text-black-principal";
     return (
-        <button className="shadow-xl rounded-sm bg-white p-2 flex-auto border border-gray-100 hover:-translate-y-1 duration-300
+        <button className={`shadow-xl rounded ${tooltipBackgroundClass} p-2 flex-1 border border-gray-100 hover:-translate-y-1 duration-300
                             relative
                             before:content-[attr(data-tip)]
                             before:absolute
@@ -31,13 +34,13 @@ const ToolTipButton: React.FC<ToolTipButtonProps> = ({ dataTip, icon, text, onCl
                             after:border-t-black
                             after:-translate-x-1/2
                             after:opacity-0
-                            after:transition-all hover:after:opacity-100"
+                            after:transition-all hover:after:opacity-100`}
                             
               data-tip={dataTip}
               onClick={onClick}
               >
                 
-            <FontAwesomeIcon icon={icon} size="lg" />
+            <FontAwesomeIcon icon={icon} size="lg" className={`${tooltipColorIcon}`} />
             {text}
         </button>
     );

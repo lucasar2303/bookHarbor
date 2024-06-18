@@ -48,10 +48,10 @@ function Menu() {
                 <div className="flex justify-between">
                     {/* Logo e Título */}
                     <div>
-                        <a href="#" className="flex items-center py-4 px-2">
+                        <Link to="/" className="flex items-center py-4 px-2">
                             <img src={logo} alt="Logo" className="h-8 w-10 mr-2" />
                             <span className="font-semibold text-black-principal text-lg font-archivoB">BookHarbor</span>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Menu para Tela Grande */}

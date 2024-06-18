@@ -4,9 +4,10 @@ import { faUpRightFromSquare, faTrash, faCheck, faStar, faPlus } from '@fortawes
 import { useEffect, useState } from 'react';
 import { useUser } from '../../../context/UserContext';  
 import ToolTipButton from './ToolTipButton';
-import { doc, getFirestore, setDoc } from 'firebase/firestore';
+import { deleteDoc, doc, getFirestore, setDoc } from 'firebase/firestore';
 import imgBook from '../../../assets/imgs/imgBookExample.png';
 import { Flip, toast } from 'react-toastify';
+import { Book } from '../../../types/book';
 
 
 const noWord = "Não rotulado"
@@ -20,6 +21,9 @@ interface BookCardProps {
     pageCount: number;
     thumbnail: string;
     link?: string;
+    canDelete?: boolean;
+    listName?: string;
+    setBooks?: React.Dispatch<React.SetStateAction<Book[]>>;
 }
 
 const formatDateToBrazilian = (dateStr:string) => {
@@ -36,7 +40,7 @@ const formatDateToBrazilian = (dateStr:string) => {
 
 
 
-const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, publishedDate, pageCount, thumbnail, link }) => {
+const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, publishedDate, pageCount, thumbnail, link, canDelete, listName, setBooks }) => {
 
     const [isFlipped, setIsFlipped] = useState(false);
     const [titleWord, setTitleWord] = useState('');
@@ -116,6 +120,22 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
                 });
         }
     };
+
+    const removeBookFromList = async () => {
+        const db = getFirestore();
+        const bookRef = doc(db, `users/${userId}/lists/${listName}/books`, bookId);
+
+        try {
+            await deleteDoc(bookRef);
+            console.log('Livro removido com sucesso!');
+            // Atualiza o estado para refletir a mudança
+            if(setBooks){
+                setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId));
+            }
+        } catch (error) {
+            console.error('Erro ao remover livro:', error);
+        }
+    };
     
     const handleMouseEnter = () => {
         setIsFlipped(true);
@@ -153,7 +173,7 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
 
         <div className="perspective-container h-96 w-56" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div className={`card h-full w-full duration-1000 ${isFlipped ? 'do-flip' : ''}`}>
-                <div className="front absolute w-full h-full shadow-2xl border p-5 border-gray-100 rounded-xl backface-hidden">
+                <div className="front absolute w-full h-full shadow-2xl border p-5 border-gray-200 rounded-xl backface-hidden">
                     <img src={thumbnail ? thumbnail : imgBook} alt="Image Book" className="w-full mb-5 h-auto max-h-64 object-contain" />
                     <h2 className='text-black-secondary font-bold font-archivo text-lg text-center' >{titleWord}</h2>
                 </div>
@@ -172,10 +192,14 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
                             <ToolTipButton dataTip="Concluído" icon={faCheck} onClick={addToCompleted} />
                             <ToolTipButton dataTip="Quero ler" icon={faPlus} onClick={addToToRead} />
                             <ToolTipButton dataTip="Favoritar" icon={faStar} onClick={addToFavorites} />
+                            
                         </div>
                     )}
                         <div className="flex justify-between gap-2">
-                            <a href={link} target='_blank' className='text-center text-lg shadow-xl rounded-sm bg-black-principal text-white font-archivo p-2 flex-auto hover:opacity-80 duration-300'>Ver mais <FontAwesomeIcon icon={faUpRightFromSquare} size="sm" className='text-white ml-2' /> </a>
+                            <a href={link} target='_blank' className='text-center items-center text-md shadow-xl rounded-sm bg-black-principal text-white font-archivo p-2 flex-auto hover:opacity-80 duration-300'>Ver mais <FontAwesomeIcon icon={faUpRightFromSquare} size="sm" className='text-white ml-2' /> </a>
+                            {canDelete && (
+                                <ToolTipButton dataTip="Remover" icon={faTrash} onClick={removeBookFromList} />
+                            )}
                         </div>
                     </div>
                 </div>
