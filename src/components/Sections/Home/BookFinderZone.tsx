@@ -7,6 +7,7 @@ import { Book } from '../../../types/book.ts';
 import notFound from '../../../assets/imgs/not-found.svg';
 import imgLoading from '../../../assets/imgs/loading.svg';
 import { getAuth } from 'firebase/auth';
+import { AnimatePresence } from 'framer-motion';
 
 const BookFinderZone: React.FC = () => {
     const [books, setBooks] = useState<Book[]>([]);
@@ -65,10 +66,11 @@ const BookFinderZone: React.FC = () => {
             ):(
                 totalResults > 0 ? (
                     <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center w-full mb-16'>
-                        {books.map((book, index) => (
+                        <AnimatePresence>
+                        {books.map((book) => (
         
                             <BookCard 
-                                key={`${book.id}-${index}`}
+                                key={book.id}
                                 bookId={book.id}
                                 title={book.volumeInfo.title}
                                 subtitle={book.volumeInfo.subtitle}
@@ -79,6 +81,7 @@ const BookFinderZone: React.FC = () => {
                                 link={book.volumeInfo.previewLink || book.volumeInfo.infoLink || ""}
                             />
                         ))}
+                        </AnimatePresence>
                     </div>
                     ) : (
                     <div className="w-full flex items-center flex-col my-24 md:my-48 gap-6">
@@ -96,6 +99,7 @@ const BookFinderZone: React.FC = () => {
             ):(
                 <br />
             )}
+            {logged}
 
         </div>
     );

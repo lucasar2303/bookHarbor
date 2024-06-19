@@ -35,7 +35,7 @@ function App() {
           <Route path="/list/favorites" element={
             <>
             <Menu/>
-            <ListPage namePage="Favoritos" />
+            <ListPage key="favorites"  namePage="Favoritos" />
             <Footer/>
             </>
           } />
@@ -43,7 +43,7 @@ function App() {
           <Route path="/list/want-read" element={
             <>
             <Menu/>
-            <ListPage namePage="Quero ler" />
+            <ListPage key="want-read"  namePage="Quero Ler" />
             <Footer/>
             </>
           } />
@@ -51,7 +51,7 @@ function App() {
           <Route path="/list/concluded" element={
             <>
             <Menu/>
-            <ListPage namePage="Concluídos" />
+            <ListPage key="concluded"  namePage="Concluídos" />
             <Footer/>
             </>
           } />

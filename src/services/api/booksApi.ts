@@ -14,8 +14,8 @@ export const searchBooks = async (query: string, sortOption: string, typeOption:
     url += "&printType="+typeOption;
 
     const response = await axios.get(url);
-    console.log(url)
-    console.log(response.data); // Imprime a resposta no console
+    // console.log(url)
+    // console.log(response.data); // Imprime a resposta no console
     return response.data;
     
   } catch (error) {

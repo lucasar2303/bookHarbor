@@ -8,6 +8,7 @@ import { deleteDoc, doc, getFirestore, setDoc } from 'firebase/firestore';
 import imgBook from '../../../assets/imgs/imgBookExample.png';
 import { Flip, toast } from 'react-toastify';
 import { Book } from '../../../types/book';
+import { motion } from 'framer-motion';
 
 
 const noWord = "Não rotulado"
@@ -170,7 +171,13 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
     };
 
     return(
-
+        <motion.div
+            initial={{ opacity: 0, y: 100, scale: 1 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.8 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            layout
+        >
         <div className="perspective-container h-96 w-56" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div className={`card h-full w-full duration-1000 ${isFlipped ? 'do-flip' : ''}`}>
                 <div className="front absolute w-full h-full shadow-2xl border p-5 border-gray-200 rounded-xl backface-hidden">
@@ -205,6 +212,7 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
                 </div>
             </div>
         </div>
+        </motion.div>
     );
 }
 

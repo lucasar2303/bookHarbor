@@ -7,6 +7,7 @@ import BookCard from '../components/Ui/Book/BookCard';
 import { useEffect, useState } from 'react';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { useUser } from '../context/UserContext';  
+import { AnimatePresence } from 'framer-motion';
 
 
 interface ListPageProps {
@@ -20,6 +21,7 @@ function ListPage({ namePage }: ListPageProps) {
     const navigate = useNavigate();
 
     useEffect(() => {
+        
         if (!userId) {
             console.log("Usuário não está logado.");
             navigate('/');
@@ -31,7 +33,7 @@ function ListPage({ namePage }: ListPageProps) {
         const booksRef = collection(db, `users/${userId}/lists/${namePage}/books`);
 
         const fetchBooks = async () => {
-            setBooks([]);
+            books.length = 0;
             const booksSnapshot = await getDocs(booksRef);
 
             if (booksSnapshot.empty) {
@@ -80,10 +82,11 @@ function ListPage({ namePage }: ListPageProps) {
                     </div>
                     <hr></hr>
                     <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center w-full mb-16 mt-10'>
-                        {books.map((book, index) => (
+                    <AnimatePresence>
+                        {books.map((book) => (
         
                             <BookCard 
-                                key={`${book.id}-${index}`}
+                                key={book.id}
                                 bookId={book.id}
                                 title={book.volumeInfo.title}
                                 subtitle={book.volumeInfo.subtitle}
@@ -97,6 +100,7 @@ function ListPage({ namePage }: ListPageProps) {
                                 setBooks={setBooks}
                             />
                         ))}
+                    </AnimatePresence>
                     </div>
                     
                     
