@@ -6,14 +6,14 @@ import logo from '../../../assets/imgs/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MenuItemList from '../../Ui/MenuItemList';
 
 
 
 
 function Menu() {
-
+    const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const list = new Map<string, string>([
@@ -39,6 +39,18 @@ function Menu() {
         setIsMenuOpen(!isMenuOpen)
     };
 
+    const handleNavigation = (href: string) => {
+        // Navega para a home se não estiver já na home
+        if (window.location.pathname !== '/') {
+          navigate('/');
+        }
+        // Aguarda a navegação e depois rola para a seção
+        setTimeout(() => {
+          const section = document.querySelector(href);
+          section?.scrollIntoView({ behavior: 'smooth' });
+        }, 100); // Pode ser necessário ajustar esse timeout
+    };
+
 
 
 
@@ -57,8 +69,8 @@ function Menu() {
                     {/* Menu para Tela Grande */}
                     <div className="hidden md:flex items-center space-x-4 font-archivo text-black-principal">
                         {currentUser ? <MenuItemList list={list}>Listas</MenuItemList> : null}
-                        <MenuItem href="#aboutSection">Sobre</MenuItem>
-                        <MenuItem href="#contactSection">Contato</MenuItem>
+                        <MenuItem href="#aboutSection" onClick={() => handleNavigation("#aboutSection")}>Sobre</MenuItem>
+                        <MenuItem href="#contactSection" onClick={() => handleNavigation("#contactSection")}>Contato</MenuItem>
                         {currentUser ? (
                             <MenuItemList list={logoutItem}>Minha conta</MenuItemList>
                         ) : (

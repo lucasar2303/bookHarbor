@@ -49,6 +49,7 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
     const [authorsWord, setAuthorsWord] = useState('');
     const [dateWord, setDateWord] = useState("");
     const [pageCountWord, setPageCountWord] = useState(0);
+    const [thumbnailUrl, setThumbnailUrl] = useState(thumbnail ? thumbnail : imgBook);
     const { user } = useUser();
     const userId = user ? user.uid : null;
     const logged = user !== null;
@@ -170,6 +171,10 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
             }
     };
 
+    const handleErrorImg = () => {
+        setThumbnailUrl(imgBook);
+    };
+
     return(
         <motion.div
             initial={{ opacity: 0, y: 100, scale: 1 }}
@@ -181,7 +186,7 @@ const BookCard: React.FC<BookCardProps> = ({ bookId, title, subtitle, authors, p
         <div className="perspective-container h-96 w-56" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div className={`card h-full w-full duration-1000 ${isFlipped ? 'do-flip' : ''}`}>
                 <div className="front absolute w-full h-full shadow-2xl border p-5 border-gray-200 rounded-xl backface-hidden">
-                    <img src={thumbnail ? thumbnail : imgBook} alt="Image Book" className="w-full mb-5 h-auto max-h-64 object-contain" />
+                    <img src={thumbnailUrl} alt="Image Book" className="w-full mb-5 h-full max-h-64 object-cover" onError={handleErrorImg}/>
                     <h2 className='text-black-secondary font-bold font-archivo text-lg text-center' >{titleWord}</h2>
                 </div>
                 <div className="back absolute w-full h-full shadow-2xl border p-5 flex flex-col justify-between border-gray-100 rounded-xl backface-hidden rotate-y-180">

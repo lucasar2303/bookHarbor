@@ -42,7 +42,9 @@ module.exports = {
         'gray-principal': '#C7C7C7',
         'gray-secondary': '#C2C2C2',
         'red-principal': '#EB4335',
-        'red-google': '#EA4335'
+        'red-google': '#EA4335',
+        'green-principal': '#34A853',
+        'green-secondary': '#289E47'
       },
       fontFamily: {
         'archivoB': ['"Archivo Black"', 'sans-serif'],

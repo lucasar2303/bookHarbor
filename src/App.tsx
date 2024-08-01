@@ -9,9 +9,18 @@ import { UserProvider } from './context/UserContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ListPage from './pages/ListPage';
+import { motion } from 'framer-motion';
 
 function App() {
-  
+
+  const renderListPage = (namePage: string, key: string) => (
+    <>
+      <Menu />
+      <ListPage key={key} namePage={namePage} />
+      <Footer />
+    </>
+  );
+
   return (
     <UserProvider>
     <Router>
@@ -23,7 +32,14 @@ function App() {
           {/* Rota para a página inicial */}
           <Route path="/" element={
             <>
+            <motion.div
+                        initial={{ opacity: 0, y: -50, scale: 1 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.4, ease: "easeInOut", delay: 1}}
+                        layout
+                        >
               <Menu/>
+              </motion.div>
               <Home />
               <Footer/>
             </>
@@ -31,30 +47,9 @@ function App() {
 
           {/* Rota para a página de autenticação */}
           <Route path="/auth" element={<AuthPage />} />
-
-          <Route path="/list/favorites" element={
-            <>
-            <Menu/>
-            <ListPage key="favorites"  namePage="Favoritos" />
-            <Footer/>
-            </>
-          } />
-
-          <Route path="/list/want-read" element={
-            <>
-            <Menu/>
-            <ListPage key="want-read"  namePage="Quero Ler" />
-            <Footer/>
-            </>
-          } />
-
-          <Route path="/list/concluded" element={
-            <>
-            <Menu/>
-            <ListPage key="concluded"  namePage="Concluídos" />
-            <Footer/>
-            </>
-          } />
+          <Route path="/list/favorites" element={renderListPage("Favoritos", "favorites")} />
+          <Route path="/list/want-read" element={renderListPage("Quero Ler", "want-read")} />
+          <Route path="/list/concluded" element={renderListPage("Concluídos", "concluded")} />
 
         </Routes>
 
