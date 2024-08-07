@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faUserPlus, faListCheck } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faUserPlus, faBook } from '@fortawesome/free-solid-svg-icons';
 
 function Functionalities(){
     return(
@@ -21,9 +21,9 @@ function Functionalities(){
             <p className='text-sm md:text-md font-archivo mt-5 h-36'>Cadastro de usuários, proporcionando a você a oportunidade de criar uma conta personalizada para aproveitar recursos exclusivos e personalizar sua jornada literária.</p>
           </div>
           <div className="shadow-2xl border border-gray-200 flex-1 p-5 max-w-sm rounded-lg hover:-translate-y-3 duration-300">
-            <div className='p-8 rounded-xl bg-blue-principal w-1 h-1 flex items-center justify-center  -translate-y-10'><FontAwesomeIcon icon={faListCheck} size="xl" className='text-white'/></div>
-            <h3 className="text-2xl text-blue-principal font-bold font-archivo">Listas Personalizadas</h3>
-            <p className='text-sm md:text-md font-archivo mt-5 h-36'>funcionalidade de criação de listas personalizadas, incluindo categorias como "Livros Lidos", "Quero Ler" e a capacidade de criar listas completamente personalizáveis.</p>
+            <div className='p-8 rounded-xl bg-blue-principal w-1 h-1 flex items-center justify-center  -translate-y-10'><FontAwesomeIcon icon={faBook} size="xl" className='text-white'/></div>
+            <h3 className="text-2xl text-blue-principal font-bold font-archivo">Livros Customizados</h3>
+            <p className='text-sm md:text-md font-archivo mt-5 h-36'>A funcionalidade permite a criação de livros personalizados dentro das listas existentes, como 'Favoritos' e 'Concluídos', com a capacidade de adicionar imagens customizadas para cada livro.</p>
           </div>
 
         </div>

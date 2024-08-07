@@ -14,6 +14,7 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch  }) => {
     const [sortOrder, setSortOrder] = useState('relevance');
     const [typeOption, setTypeOption] = useState('all');
     const [searchTerm, setSearchTerm] = useState('Clean code');
+    const [resetFilterOn, setResetFilterOn] = useState(false);
 
     // Switch placeholder Select Order
 
@@ -52,10 +53,18 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch  }) => {
 
         onSearch(defaultSearchTerm, defaultSortOrder, defaultTypeOption);
         setSearchTerm('');
-
-
-        
     };
+
+    useEffect(() => {
+        if (sortOrder === 'relevance' && typeOption === 'all' && searchTerm === '') {
+
+            setResetFilterOn(false);
+        }else{
+            setResetFilterOn(true);
+        }
+    }, [sortOrder, typeOption, searchTerm]);
+
+
 
     // Button Order
     
@@ -169,6 +178,11 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch  }) => {
                     className="border border-gray-principal w-full md:w-auto rounded-md py-1 px-2 bg-white hover:border-gray-400 focus:outline-none focus:border-black-principal"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            handleSearch();
+                        }
+                    }}
                 />
                 <button className="p-2 px-8 bg-blue-principal text-white rounded-md hover:bg-blue-secondary focus:outline-none focus:ring" onClick={handleSearch}>
                     <FontAwesomeIcon icon={faSearch} />
@@ -180,7 +194,9 @@ const BookFilter: React.FC<BookFilterProps> = ({ onSearch  }) => {
     </div>
     <hr className="my-4 md:my-8 border-t border-gray-principal" />
     <div className="flex justify-end w-full items-center mb-10">
+        {resetFilterOn && 
         <button onClick={resetFilter} className="flex gap-2 items-center rounded shadow-white hover:-translate-y-1 transition-all duration-300 text-sm flex-row-reverse md:flex-row md:text-base active:scale-50"><span className='text-black-secondary'>Limpar filtros</span> <FontAwesomeIcon icon={faXmark} className='text-blue-secondary text-xl' /></button>
+        }
     </div>
     </div>
 

@@ -94,7 +94,7 @@ const BookFinderZone: React.FC = () => {
             
 
             {!loadingOn?(
-                <p className='w-full text-center mt-10 font-archivo'>Não encontrou seu livro ? Adicione um diretamente em <a className='text-blue-principal hover:text-blue-secondary cursor-pointer'>sua lista</a></p>
+                <p className='w-full text-center mt-10 font-archivo'>Não encontrou seu livro ? Adicione um diretamente em sua lista</p>
 
             ):(
                 <br />
