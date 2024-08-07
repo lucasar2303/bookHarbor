@@ -68,11 +68,11 @@ function Menu() {
 
                     {/* Menu para Tela Grande */}
                     <div className="hidden md:flex items-center space-x-4 font-archivo text-black-principal">
-                        {currentUser ? <MenuItemList list={list}>Listas</MenuItemList> : null}
+                        {currentUser ? <MenuItemList list={list} toggleMenu={toggleMenu}>Listas</MenuItemList> : null}
                         <MenuItem href="#aboutSection" onClick={() => handleNavigation("#aboutSection")}>Sobre</MenuItem>
                         <MenuItem href="#contactSection" onClick={() => handleNavigation("#contactSection")}>Contato</MenuItem>
                         {currentUser ? (
-                            <MenuItemList list={logoutItem}>Minha conta</MenuItemList>
+                            <MenuItemList list={logoutItem} toggleMenu={toggleMenu}>Minha conta</MenuItemList>
                         ) : (
                             <Link to="/auth" className='py-4 px-2 hover:text-blue-principal border-b-2 border-transparent hover:border-blue-principal transition duration-300'>Entrar</Link>
                         )}
@@ -89,11 +89,11 @@ function Menu() {
                         <div className={`absolute bg-black-principal w-[100%] h-screen transition-all duration-300 ${isMenuOpen ? 'opacity-90' : 'opacity-0'}`} onClick={toggleMenu}></div>
                         <div className={`absolute right-0 bg-white w-[70%] h-screen flex flex-col z-10 px-3 transition-all duration-300 ${isMenuOpen ? 'right-0' : 'right-nfull'}`}>
                         <button className='self-end py-3'><FontAwesomeIcon icon={faXmark} size="xl" className=' z-10 text-black-secondary' onClick={toggleMenu}/></button>
-                            {currentUser ? <MenuItemList list={list}>Listas</MenuItemList> : null}
+                            {currentUser ? <MenuItemList list={list} toggleMenu={toggleMenu}>Listas</MenuItemList> : null}
                             <MenuItem href="#aboutSection" onClick={toggleMenu}>Sobre</MenuItem>
                             <MenuItem href="#contactSection"  onClick={toggleMenu}>Contato</MenuItem>
                             {currentUser ? (
-                            <MenuItemList list={logoutItem}>Minha conta</MenuItemList>
+                            <MenuItemList list={logoutItem} toggleMenu={toggleMenu}>Minha conta</MenuItemList>
                             ) : (
                                 <Link to="/auth" className='py-4 px-2 hover:text-blue-principal border-b-2 border-transparent hover:border-blue-principal transition duration-300'>Entrar</Link>
                             )}

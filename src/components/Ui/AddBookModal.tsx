@@ -122,8 +122,8 @@ function AddBookModal( { switchModal, listName, fetchBooks }: AddBookModalProps)
             animate={{ opacity: 1, scale: 1}}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut", delay: 0.3 }}
-            className='bg-white p-10 rounded-lg flex gap-10 relative w-screen h-screen md:min-h-0 md:h-auto md:w-max shadow-2xl border border-gray-200 flex-col md:flex-row overflow-y-scroll md:overflow-y-hidden'>
-                <FontAwesomeIcon icon={faRectangleXmark} size="xl" className='text-black-principal hover:text-black absolute top-2 right-2 md:top-5 md:right-5 cursor-pointer' onClick={switchModal}/>
+            className='bg-white py-20 md:py-10 p-10  rounded-lg flex gap-10 relative w-screen h-screen md:min-h-0 md:h-auto md:w-max shadow-2xl border border-gray-200 flex-col md:flex-row overflow-y-scroll md:overflow-y-hidden'>
+                <FontAwesomeIcon icon={faRectangleXmark} size="xl" className='text-black-principal hover:text-black absolute top-10 right-10 md:top-5 md:right-5 cursor-pointer' onClick={switchModal}/>
                 <div className='flex flex-col gap-3 border-b border-gray-300 pb-10 md:pb-0 md:pr-10 md:border-b-0 md:border-r'>
                     {!imageError ?
                     <img src={thumbnail} alt="Image Book" className="w-full md:w-52 h-96 md:h-full object-cover" onError={handleError}/>

@@ -53,6 +53,9 @@ module.exports = {
       inset: {
         'nfull': '-100%',
       },
+      height: {
+        'screen-dynamic': 'calc(var(--vh, 1vh) * 100)',
+      },
     },
   },
   plugins: [Myclass],

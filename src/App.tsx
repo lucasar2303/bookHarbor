@@ -25,7 +25,7 @@ function App() {
     <UserProvider>
     <Router>
     <ToastContainer />
-      <div>
+      <div className='h-screen-dynamic'>
 
         <Routes>
 

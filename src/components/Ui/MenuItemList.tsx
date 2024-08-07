@@ -10,11 +10,12 @@ import { useNavigate } from 'react-router-dom';
 interface MenuItemListProps {
     children: React.ReactNode;
     list: Map<string, string>;
+    toggleMenu: () => void
 }
 
 
 
-const MenuItemList: React.FC<MenuItemListProps> = ({ children, list }) => {
+const MenuItemList: React.FC<MenuItemListProps> = ({ children, list, toggleMenu }) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
@@ -39,7 +40,7 @@ const MenuItemList: React.FC<MenuItemListProps> = ({ children, list }) => {
                         )
                     }else{
                         return (
-                            <Link key={title} to={path} className='py-2 w-full hover:bg-gray-100 px-2 md:border-none border-y border-gray-100'>{title}</Link>
+                            <Link key={title} to={path} onClick={toggleMenu} className='py-2 w-full hover:bg-gray-100 px-2 md:border-none border-y border-gray-100'>{title}</Link>
                         )
                     }
                 })}

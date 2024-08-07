@@ -84,8 +84,8 @@ function ListPage({ namePage }: ListPageProps) {
             <div className='max-w-7xl m-auto px-4 mt-12 md:mt-0 lg:mt-20'>
                     <div className='flex w-full items-center justify-between mb-3 flex-col md:flex-row'>
                         <h1 className='font-archivoB text-black-principal text-2xl md:text-3xl mb-3 md:mb-0'>{namePage}</h1>
-                        <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 max-w-xs w-full md:w-auto overflow-hidden text-sm font-medium rounded-lg group text-white font-archivo bg-blue-secondary">
-                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-blue-secondary rounded-md group-hover:bg-blue-principal" onClick={switchModal}>
+                        <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 max-w-xs w-full md:w-auto overflow-hidden text-sm font-medium rounded-lg group text-white font-archivo bg-blue-secondary" onClick={switchModal}>
+                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-blue-secondary rounded-md w-full md:w-auto group-hover:bg-blue-principal" >
                                 Adicionar livro
                             </span>
                             <FontAwesomeIcon icon={faPlus} size="lg" className='px-2' />
