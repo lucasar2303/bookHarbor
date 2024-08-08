@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+# Book Harbor 📘
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto de estudo em **React** utilizando tecnologias como: **Typescript**, **Tailwind** e **Firebase**
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Funcionalidades
 
-## Expanding the ESLint configuration
+- **Busca de Livros**: Encontre qualquer livro que você imaginar utilizando a Google Books API.
+- **Listas Personalizadas**: Crie e organize seus livros em listas como "Concluídos", "Quero Ler" e "Favoritos".
+- **Autenticação com Google**: Login fácil e seguro com sua conta do Google utilizando Firebase.
+- **Armazenamento de Dados**: Dados salvos em tempo real utilizando Firebase.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🛠️ Tecnologias
 
-- Configure the top-level `parserOptions` property like this:
+- **React**
+- **TypeScript**
+- **Firebase**
+- **Tailwind CSS**
+- **Outras Ferramentas**:
+  - **Vite**: Ferramenta de build rápida e moderna.
+  - **Axios**: Cliente HTTP baseado em Promises.
+  - **Framer Motion**: Biblioteca para animações no React.
+  - **React Router**: Roteamento para aplicações React.
+  - **React Toastify**: Biblioteca para notificações em aplicações React.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## 🎨 Design
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Durante a criação deste projeto, uma ênfase especial foi colocada no desenvolvimento de UI e UX para garantir uma experiência intuitiva e agradável para os usuários:
+
+- **Interface Clara e Limpa**
+- **Experiência de usuário centrada**
+- **Paleta de cores e design minimalista**
+- **Responsividade**
+
+Para uma visão mais detalhada do design, bem como todas as considerações de UI e UX implementadas, você pode conferir o projeto completo no Figma através [deste link](https://www.figma.com/design/75QFF6BI0Oedfr5uQXqg2S/Book-find?node-id=0-1&t=x4zqduaOgRR1dMms-1).
+
+## 🖥️ Demonstração
+
+Confira a demonstração online [aqui](https://bookharbor-zeta.vercel.app).
