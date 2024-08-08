@@ -2,6 +2,7 @@
 
 Projeto de estudo em **React** utilizando tecnologias como: **Typescript**, **Tailwind** e **Firebase**
 
+![2024-08-07 21-07-39 (1)](https://github.com/user-attachments/assets/10fa39e3-b329-4ab0-9ad7-5657a6b0c540)
 
 ## 🚀 Funcionalidades
 
